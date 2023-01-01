@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin
@@ -83,6 +81,9 @@ public class AttendingController {
             throw new Exception("wrong user");
         }
         List<History> histories = absenceRepository.findAllByStudent(student.get()).stream().map(History::new).toList();
+        histories = new ArrayList<>(histories);
+        Collections.reverse(histories);
+
         return histories;
     }
 
@@ -92,10 +93,11 @@ public class AttendingController {
         if (student.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        Optional<Absence> absence = absenceRepository.findFirstByStudentAndAndIsAbsentIsFalse(student.get());
+        List<Absence> absence = absenceRepository.findAllByStudent(student.get());
+
         if (absence.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(new History(absence.get()));
+        return ResponseEntity.ok(new History(absence.get(absence.size()-1)));
     }
 }
