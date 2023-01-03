@@ -77,7 +77,7 @@ class StudentServerApplicationTests {
 
     @Test
     void testLastH() {
-        System.out.println(absenceRepository.findFirstByStudentAndAndIsAbsentIsFalse(new Student("id0","id0", "id0")));
+//        System.out.println(absenceRepository.findFirstByStudentAndAndIsAbsentIsFalse(new Student("id0","id0", "id0")));
 
     }
 }

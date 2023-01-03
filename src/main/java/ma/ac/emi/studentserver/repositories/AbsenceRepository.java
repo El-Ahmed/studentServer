@@ -13,5 +13,6 @@ public interface AbsenceRepository extends MongoRepository<Absence, String > {
     Optional<Absence> findBySessionAndStudent(Session session, Student student);
 
     List<Absence> findAllByStudent(Student student);
-    Optional<Absence> findFirstByStudentAndAndIsAbsentIsFalse(Student student);
+    List<Absence> findAllByStudentAndIsAbsentFalse(Student student);
+    Optional<Absence> findFirstByStudentAndIsAbsentIsFalse(Student student);
 }

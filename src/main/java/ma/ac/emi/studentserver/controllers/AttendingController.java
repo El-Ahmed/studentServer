@@ -93,7 +93,7 @@ public class AttendingController {
         if (student.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        List<Absence> absence = absenceRepository.findAllByStudent(student.get());
+        List<Absence> absence = absenceRepository.findAllByStudentAndIsAbsentFalse(student.get());
 
         if (absence.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
