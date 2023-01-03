@@ -55,6 +55,7 @@ public class AttendingController {
     @GetMapping("/attend")
     public ResponseEntity<History> attend(String qrCode, Principal principal) {
 
+        System.out.println(qrCode);
 
         Optional<Student> student = studentRepository.findByUserName(principal.getName());
         Optional<Session> session = sessionRepository.findByQrCode(qrCode);

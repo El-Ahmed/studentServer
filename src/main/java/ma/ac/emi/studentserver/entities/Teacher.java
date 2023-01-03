@@ -4,7 +4,7 @@ package ma.ac.emi.studentserver.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "teachers")
+@Document(collection = "teacher")
 public class Teacher {
     @Id
     private String id;

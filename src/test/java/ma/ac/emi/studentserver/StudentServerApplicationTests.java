@@ -36,6 +36,8 @@ class StudentServerApplicationTests {
         studentRepository.save(student);
         Student student2 = new Student("ahmed2", "ahmed2", "pass");
         studentRepository.save(student2);
+        Student student3 = new Student("anas", "anas", "pass");
+        studentRepository.save(student3);
 
         // create teacher
         Teacher teacher = new Teacher("bah", "Bah", "Teach");
@@ -53,15 +55,18 @@ class StudentServerApplicationTests {
         sessionRepository.save(session);
         Absence absence = new Absence("ahmed", student,session,true);
         Absence absence2 = new Absence("ahmed2", student2,session,true);
+        Absence absence3 = new Absence("anas", student3,session,true);
 
         absenceRepository.save(absence);
         absenceRepository.save(absence2);
+        absenceRepository.save(absence3);
     }
 
     @Test
     void addSession() {
         Student student = new Student("ahmed", "ahmed", "pass0");
         Student student2 = new Student("ahmed2", "ahmed2", "pass");
+        Student student3 = new Student("anas", "anas", "pass");
         Teacher teacher = new Teacher("bah", "Bah", "Teach");
         Subject subject2 = new Subject("PC", "PC", teacher);
          //create session
@@ -69,9 +74,33 @@ class StudentServerApplicationTests {
         sessionRepository.save(session);
         Absence absence = new Absence("ahmeds2", student,session,true);
         Absence absence2 = new Absence("ahmed2s2", student2,session,true);
+        Absence absence3 = new Absence("anass2", student3,session,true);
 
         absenceRepository.save(absence);
         absenceRepository.save(absence2);
+        absenceRepository.save(absence3);
+
+    }
+    @Test
+    void addS1(){
+        newSession("qrrr");
+    }
+    private void newSession(String qr) {
+         Student student = new Student("ahmed", "ahmed", "pass0");
+        Student student2 = new Student("ahmed2", "ahmed2", "pass");
+        Student student3 = new Student("anas", "anas", "pass");
+        Teacher teacher = new Teacher("bah", "Bah", "Teach");
+        Subject subject2 = new Subject("PC", "PC", teacher);
+         //create session
+        Session session = new Session(qr, qr, new Date(), subject2);
+        sessionRepository.save(session);
+        Absence absence = new Absence("ahmeds2", student,session,true);
+        Absence absence2 = new Absence("ahmed2s2", student2,session,true);
+        Absence absence3 = new Absence("anass2", student3,session,true);
+
+        absenceRepository.save(absence);
+        absenceRepository.save(absence2);
+        absenceRepository.save(absence3);
 
     }
 

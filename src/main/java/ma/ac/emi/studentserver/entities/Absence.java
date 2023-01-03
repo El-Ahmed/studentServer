@@ -22,6 +22,7 @@ public class Absence {
 
     private Boolean isAbsent;
 
+    private Date date;
 
     public Absence(String id, Student student, Session session, Boolean isAbsent) {
         this.id = id;

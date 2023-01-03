@@ -2,6 +2,7 @@ package ma.ac.emi.studentserver.controllers;
 
 import ma.ac.emi.studentserver.models.JwtRequest;
 import ma.ac.emi.studentserver.models.JwtResponse;
+import ma.ac.emi.studentserver.repositories.StudentRepository;
 import ma.ac.emi.studentserver.services.JwtUserDetailsService;
 import ma.ac.emi.studentserver.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    StudentRepository studentRepository;
 
 
     @Autowired
@@ -36,6 +39,10 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> authenticateUser(@RequestBody JwtRequest loginRequest) {
+
+        System.out.println(loginRequest.getUsername());
+        System.out.println(loginRequest.getPassword());
+        System.out.println(studentRepository.findByUserName(loginRequest.getUsername()));
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
